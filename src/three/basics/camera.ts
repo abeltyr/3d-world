@@ -2,7 +2,7 @@ import { PerspectiveCamera, Scene } from "three";
 
 const setupCamera = ({
   scene,
-  fov = 75,
+  fov = 90,
   position = {
     x: 0,
     y: 10,
