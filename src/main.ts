@@ -69,8 +69,11 @@ const tick = () => {
     raycaster.ray.origin.copy(controls.getObject().position);
     // raycaster.ray.origin.y -= 10;
 
-    const intersections = raycaster.intersectObjects(objects, true);
-
+    // console.log("camera", camera.position);
+    // console.log("Controller", controls.getObject().position);
+    // console.log("intersections", intersections);
+    // console.log("objects", objects);
+    const intersections = raycaster.intersectObjects(objects, false);
     const onObject = intersections.length > 0;
     if (onObject === true) {
       console.log("object infront");

@@ -11,6 +11,8 @@ const setupController = ({
   camera: PerspectiveCamera;
 }) => {
   const controls = new PointerLockControls(camera, canvas);
+  controls.maxPolarAngle = Math.PI / 2;
+  controls.minPolarAngle = 0;
   const blocker = document.getElementById("blocker");
   const instructions = document.getElementById("instructions");
 
