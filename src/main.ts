@@ -80,8 +80,15 @@ const tick = () => {
     const delta = elapsedTime - prevTime;
     prevTime = elapsedTime;
 
+    let forwardBlock = false;
     raycaster.setFromCamera(mouse, camera);
-    // const intersections = raycaster.intersectObjects(objects, false);
+    const intersections = raycaster.intersectObjects(objects, false);
+
+    if (intersections.length > 0) {
+      forwardBlock = intersections[0].distance < 15;
+    } else {
+      forwardBlock = false;
+    }
 
     // this help reduce the speed of the movement because the default one is to fast    velocity.x -= velocity.x * 10.0 * delta;
     velocity.z -= velocity.z * 10.0 * delta;
@@ -97,7 +104,7 @@ const tick = () => {
 
     // the direction value is multiplied by the an additional speed which is
     // 400 in the current case to get the acceleration
-    if (movement.moveForward || movement.moveBackward)
+    if ((movement.moveForward && !forwardBlock) || movement.moveBackward)
       velocity.z -= direction.z * 400.0 * delta;
     if (movement.moveLeft || movement.moveRight)
       velocity.x -= direction.x * 400.0 * delta;
