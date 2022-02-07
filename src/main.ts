@@ -10,6 +10,7 @@ import { FloorMesh } from "./three/mesh";
 import BoxMesh from "./three/mesh/box";
 import Stats from "stats.js";
 import MovementEventListener from "./three/events/movement";
+import MouseEventListener from "./three/events/mouse";
 
 let initialData = {
   start: false,
@@ -68,23 +69,9 @@ const velocity = new THREE.Vector3();
 const direction = new THREE.Vector3();
 let prevTime = 0;
 
-const mouse = new THREE.Vector2();
+let mouse = new THREE.Vector2();
 
-window.addEventListener("mousemove", (_event) => {
-  if (initialData.start) {
-    let rotation = 1;
-    if (
-      _event.clientX / window.innerWidth > 0.9 ||
-      _event.clientX / window.innerWidth < 0.1
-    )
-      rotation = 1.15;
-    camera.rotation.y =
-      -3 * Math.PI * (_event.clientX / window.innerWidth - 0.5) * rotation;
-  }
-
-  mouse.x = (_event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -((_event.clientY / window.innerHeight) * 2) + 1;
-});
+MouseEventListener({ camera, initialData, mouse });
 
 const tick = () => {
   if (initialData.start) {
