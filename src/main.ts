@@ -54,7 +54,7 @@ BoxMesh({ scene, objects });
 const renderer = RenderScene({ canvas, camera, scene });
 
 //resize event listener
-SizeEventListener({ camera, renderer });
+SizeEventListener({ camera, renderer, firstPersonControls });
 
 let raycaster = new THREE.Raycaster(
   new THREE.Vector3(),
