@@ -3,7 +3,6 @@ import {
   Scene,
   Color,
   Float32BufferAttribute,
-  MeshBasicMaterial,
   BoxBufferGeometry,
   MeshPhongMaterial,
 } from "three";

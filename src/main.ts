@@ -67,7 +67,7 @@ let prevTime = 0;
 const tick = () => {
   if (controls.isLocked === true) {
     raycaster.ray.origin.copy(controls.getObject().position);
-    raycaster.ray.origin.y -= 10;
+    // raycaster.ray.origin.y -= 10;
 
     const intersections = raycaster.intersectObjects(objects, true);
 
