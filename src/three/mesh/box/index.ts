@@ -30,7 +30,7 @@ const BoxMesh = ({
 
   boxGeometry.setAttribute("color", new Float32BufferAttribute(colorsBox, 3));
 
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 200; i++) {
     const boxMaterial = new MeshPhongMaterial({
       specular: 0xffffff,
       flatShading: true,
@@ -44,7 +44,7 @@ const BoxMesh = ({
 
     const box = new Mesh(boxGeometry, boxMaterial);
     box.position.x = Math.floor(Math.random() * 20 - 10) * 20;
-    box.position.y = Math.floor(Math.random() * 20) * 20 + 10;
+    box.position.y = Math.floor(Math.random() * 10);
     box.position.z = Math.floor(Math.random() * 20 - 10) * 20;
 
     scene.add(box);

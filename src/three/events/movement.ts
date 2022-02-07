@@ -1,6 +1,8 @@
 const MovementEventListener = ({
   movement,
+  initialData,
 }: {
+  initialData: { start: boolean };
   movement: {
     moveForward: boolean;
     moveLeft: boolean;
@@ -10,48 +12,25 @@ const MovementEventListener = ({
 }) => {
   const onKeyDown = function (event: any) {
     switch (event.code) {
-      case "ArrowUp":
-      case "KeyW":
+      case "Space":
         movement.moveForward = true;
         break;
 
-      case "ArrowLeft":
-      case "KeyA":
-        movement.moveLeft = true;
+      case "Escape":
+        initialData.start = false;
         break;
-
-      case "ArrowDown":
-      case "KeyS":
-        movement.moveBackward = true;
+        "";
+      case "Enter":
+        initialData.start = !initialData.start ? true : false;
         break;
-
-      case "ArrowRight":
-      case "KeyD":
-        movement.moveRight = true;
-        break;
+        "";
     }
   };
 
   const onKeyUp = function (event: any) {
     switch (event.code) {
-      case "ArrowUp":
-      case "KeyW":
+      case "Space":
         movement.moveForward = false;
-        break;
-
-      case "ArrowLeft":
-      case "KeyA":
-        movement.moveLeft = false;
-        break;
-
-      case "ArrowDown":
-      case "KeyS":
-        movement.moveBackward = false;
-        break;
-
-      case "ArrowRight":
-      case "KeyD":
-        movement.moveRight = false;
         break;
     }
   };
