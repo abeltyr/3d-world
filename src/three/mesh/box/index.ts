@@ -18,7 +18,7 @@ const BoxMesh = ({
   // objects
   const color = new Color();
 
-  const boxGeometry = new BoxBufferGeometry(20, 200, 20).toNonIndexed();
+  const boxGeometry = new BoxBufferGeometry(20, 50, 20).toNonIndexed();
 
   let position = boxGeometry.attributes.position;
   const colorsBox = [];
@@ -30,7 +30,7 @@ const BoxMesh = ({
 
   boxGeometry.setAttribute("color", new Float32BufferAttribute(colorsBox, 3));
 
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 50; i++) {
     const boxMaterial = new MeshPhongMaterial({
       specular: 0xffffff,
       flatShading: true,

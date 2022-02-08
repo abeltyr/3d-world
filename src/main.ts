@@ -81,7 +81,7 @@ const tick = () => {
     prevTime = elapsedTime;
 
     let forwardBlock = false;
-    raycaster.setFromCamera(mouse, camera);
+    raycaster.setFromCamera({ x: mouse.x, y: -0.2 }, camera);
     const intersections = raycaster.intersectObjects(objects, false);
 
     if (intersections.length > 0) {
