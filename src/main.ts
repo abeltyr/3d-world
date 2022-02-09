@@ -10,7 +10,8 @@ import { FloorMesh } from "./three/mesh";
 import Stats from "stats.js";
 import MovementEventListener from "./three/events/movement";
 import MouseEventListener from "./three/events/mouse";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import BoxMesh from "./three/mesh/box";
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 let initialData = {
   start: false,
@@ -21,24 +22,24 @@ const stats = new Stats();
 stats.showPanel(0);
 document.body.appendChild(stats.dom);
 
-const gltfLoader = new GLTFLoader();
-// const building =
 let objects: any = [];
-gltfLoader.load(
-  "/model/building.gltf",
-  (gltf) => {
-    gltf.scene.scale.set(7, 7, 7);
-    objects = [...gltf.scene.children];
-    gltf.scene.position.y += 0.1;
-    scene.add(gltf.scene);
-  },
-  (progress) => {
-    console.log("progress", progress);
-  },
-  (error) => {
-    console.log("error", error);
-  },
-);
+// const gltfLoader = new GLTFLoader();
+// // const building =
+// gltfLoader.load(
+//   "/model/building.gltf",
+//   (gltf) => {
+//     gltf.scene.scale.set(7, 7, 7);
+//     objects = [...gltf.scene.children];
+//     gltf.scene.position.y += 0.1;
+//     scene.add(gltf.scene);
+//   },
+//   (progress) => {
+//     console.log("progress", progress);
+//   },
+//   (error) => {
+//     console.log("error", error);
+//   },
+// );
 
 // This is the canvas used for linking the webgl with
 const canvas: any = document.querySelector("canvas#webgl");
@@ -70,6 +71,8 @@ MovementEventListener({ movement, initialData });
 
 // the floor
 FloorMesh({ scene });
+// the box
+BoxMesh({ scene, objects });
 
 // the box
 // BoxMesh({ scene, objects });
