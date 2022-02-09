@@ -7,10 +7,10 @@ import setupScene from "./three/basics/scene";
 import setupLight from "./three/basics/light";
 import setupController from "./three/basics/controller";
 import { FloorMesh } from "./three/mesh";
-import BoxMesh from "./three/mesh/box";
 import Stats from "stats.js";
 import MovementEventListener from "./three/events/movement";
 import MouseEventListener from "./three/events/mouse";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 let initialData = {
   start: false,
@@ -20,6 +20,25 @@ let initialData = {
 const stats = new Stats();
 stats.showPanel(0);
 document.body.appendChild(stats.dom);
+
+const gltfLoader = new GLTFLoader();
+// const building =
+let objects: any = [];
+gltfLoader.load(
+  "/model/building.gltf",
+  (gltf) => {
+    gltf.scene.scale.set(7, 7, 7);
+    objects = [...gltf.scene.children];
+    gltf.scene.position.y += 0.1;
+    scene.add(gltf.scene);
+  },
+  (progress) => {
+    console.log("progress", progress);
+  },
+  (error) => {
+    console.log("error", error);
+  },
+);
 
 // This is the canvas used for linking the webgl with
 const canvas: any = document.querySelector("canvas#webgl");
@@ -53,8 +72,7 @@ MovementEventListener({ movement, initialData });
 FloorMesh({ scene });
 
 // the box
-const objects: any = [];
-BoxMesh({ scene, objects });
+// BoxMesh({ scene, objects });
 
 // renderer
 const renderer = RenderScene({ canvas, camera, scene });
@@ -107,7 +125,7 @@ const tick = () => {
     if ((movement.moveForward && !forwardBlock) || movement.moveBackward)
       velocity.z -= direction.z * 400.0 * delta;
     if (movement.moveLeft || movement.moveRight)
-      velocity.x -= direction.x * 400.0 * delta;
+      velocity.x -= direction.x * 800.0 * delta;
     pointerLockControls.moveRight(-velocity.x * delta);
     pointerLockControls.moveForward(-velocity.z * delta);
   }

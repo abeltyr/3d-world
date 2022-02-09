@@ -21,7 +21,7 @@ const setupCamera = ({
     fov,
     window.innerWidth / window.innerHeight,
     0.1,
-    1000,
+    10000,
   );
   camera.position.set(position.x, position.y, position.z);
   scene.add(camera);
